@@ -21,6 +21,8 @@ export enum Theme {
 }
 
 export const DEFAULT_CONFIG = {
+  api_key: "123",
+  api_url: "123",
   submitKey: SubmitKey.Enter as SubmitKey,
   avatar: "26f7-fe0f",
   fontSize: 15,

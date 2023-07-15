@@ -17,6 +17,7 @@ export type Mask = {
   hideContext?: boolean;
   context: ChatMessage[];
   syncGlobalConfig?: boolean;
+  syncGlobalApi?: boolean;
   modelConfig: ModelConfig;
   lang: Lang;
   builtin: boolean;
@@ -46,6 +47,7 @@ export const createEmptyMask = () =>
     name: DEFAULT_TOPIC,
     context: [],
     syncGlobalConfig: true, // use global config as default
+    syncGlobalApi: true, // use global api as default
     modelConfig: { ...useAppConfig.getState().modelConfig },
     lang: getLang(),
     builtin: false,

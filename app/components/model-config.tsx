@@ -17,7 +17,7 @@ export function ModelConfigList(props: {
   const accessStore = useAccessStore();
   return (
     <>
-      <List>
+      {/* <List>
         <ListItem
           title={Locale.Settings.Endpoint.Title}
           subTitle={Locale.Settings.Endpoint.SubTitle}
@@ -29,9 +29,9 @@ export function ModelConfigList(props: {
             onChange={(e) =>
               props.updateConfig(
                 (config) =>
-                (config.api_url = 
-                  e.currentTarget.value,
-                  accessStore.updateOpenAiUrl(e.currentTarget.value)
+                (config.api_url =
+                  e.currentTarget.value
+                  // accessStore.updateOpenAiUrl(e.currentTarget.value)
                 ),
               )
             }
@@ -48,15 +48,15 @@ export function ModelConfigList(props: {
             onChange={(e) =>
               props.updateConfig(
                 (config) =>
-                (config.api_key = 
-                  e.currentTarget.value,
-                  accessStore.updateToken(e.currentTarget.value)
-                  ),
+                (config.api_key =
+                  e.currentTarget.value
+                  // accessStore.updateToken(e.currentTarget.value)
+                ),
               )
             }
           />
         </ListItem>
-      </List>
+      </List> */}
       <List>
 
         <ListItem title={Locale.Settings.Model}>

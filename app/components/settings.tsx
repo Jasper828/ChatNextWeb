@@ -640,10 +640,12 @@ export function Settings() {
               >
                 <input
                   type="text"
-                  value={accessStore.openaiUrl}
+                  value={accessStore.global_openaiUrl}
                   placeholder="https://api.openai.com/"
-                  onChange={(e) =>
-                    accessStore.updateOpenAiUrl(e.currentTarget.value)
+                  onChange={(e) =>(
+                    accessStore.updateOpenAiUrl(e.currentTarget.value),
+                    accessStore.updateGlobalOpenaiUrl(e.currentTarget.value)
+                  )
                   }
                 ></input>
               </ListItem>
@@ -656,7 +658,8 @@ export function Settings() {
                   type="text"
                   placeholder={Locale.Settings.Token.Placeholder}
                   onChange={(e) => {
-                    accessStore.updateToken(e.currentTarget.value);
+                    accessStore.updateToken(e.currentTarget.value),
+                    accessStore.updateGlobalApiKey(e.currentTarget.value)
                   }}
                 />
               </ListItem>

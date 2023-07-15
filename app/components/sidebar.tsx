@@ -14,7 +14,7 @@ import PluginIcon from "../icons/plugin.svg";
 
 import Locale from "../locales";
 
-import { useAppConfig, useChatStore } from "../store";
+import { useAppConfig, useChatStore, useAccessStore } from "../store";
 
 import {
   MAX_SIDEBAR_WIDTH,
@@ -108,15 +108,14 @@ export function SideBar(props: { className?: string }) {
   const { onDragMouseDown, shouldNarrow } = useDragSideBar();
   const navigate = useNavigate();
   const config = useAppConfig();
-
+  const accessStore = useAccessStore();
   useHotKey();
 
   // @ts-ignore
   return (
     <div
-      className={`${styles.sidebar} ${props.className} ${
-        shouldNarrow && styles["narrow-sidebar"]
-      }`}
+      className={`${styles.sidebar} ${props.className} ${shouldNarrow && styles["narrow-sidebar"]
+        }`}
     >
       <div className={styles["sidebar-header"]} data-tauri-drag-region>
         <div className={styles["sidebar-title"]} data-tauri-drag-region>
@@ -151,6 +150,10 @@ export function SideBar(props: { className?: string }) {
           if (e.target === e.currentTarget) {
             navigate(Path.Home);
           }
+          const temp = chatStore.currentSession();
+          // console.log("点击了", temp.mask.api_url);
+          accessStore.updateOpenAiUrl(temp.mask.api_url);
+          accessStore.updateToken(temp.mask.api_key);
         }}
       >
         <ChatList narrow={shouldNarrow} />
@@ -206,6 +209,6 @@ export function SideBar(props: { className?: string }) {
         className={styles["sidebar-drag"]}
         onMouseDown={(e) => onDragMouseDown(e as any)}
       ></div>
-    </div>
+    </div >
   );
 }
