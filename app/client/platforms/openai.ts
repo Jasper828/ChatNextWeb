@@ -25,7 +25,10 @@ export interface OpenAIListModelResponse {
 export class ChatGPTApi implements LLMApi {
   path(path: string): string {
     let openaiUrl = useAccessStore.getState().openaiUrl;
-    if (openaiUrl.length === 0) {
+    const chatStore = useChatStore.getState();
+    const session = chatStore.currentSession();
+    const isDefault = session.mask.api_url;
+    if ((openaiUrl.length === 0) || (isDefault == "")) {
       openaiUrl = DEFAULT_API_HOST;
     }
     if (openaiUrl.endsWith("/")) {

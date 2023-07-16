@@ -1,6 +1,6 @@
 import { getClientConfig } from "../config/client";
 import { ACCESS_CODE_PREFIX } from "../constant";
-import { ChatMessage, ModelType, useAccessStore } from "../store";
+import { ChatMessage, ModelType, useAccessStore, useChatStore } from "../store";
 import { ChatGPTApi } from "./platforms/openai";
 
 export const ROLES = ["system", "user", "assistant"] as const;
@@ -134,9 +134,12 @@ export function getHeaders() {
 
   const makeBearer = (token: string) => `Bearer ${token.trim()}`;
   const validString = (x: string) => x && x.length > 0;
-
+  const chatStore = useChatStore.getState();
+  const session = chatStore.currentSession();
+  const isDefault = session.mask.api_key;
   // use user's api key first
-  if (validString(accessStore.token)) {
+  // 增加判断条件 currentSession的key要不是默认的
+  if (validString(accessStore.token) && (isDefault !== "")) {
     headers.Authorization = makeBearer(accessStore.token);
   } else if (
     accessStore.enabledAccessControl() &&

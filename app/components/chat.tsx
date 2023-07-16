@@ -95,14 +95,14 @@ export function useUpdateAccessStore(api_key: string, api_url: string) {
   }, [accessStore, api_key, api_url]);
 }
 
-function MyComponent() {
-  useUpdateAccessStore('your_api_key', 'your_api_url');
+// function MyComponent() {
+//   useUpdateAccessStore('your_api_key', 'your_api_url');
 
-  return (
-    // your component JSX
-    <div></div>
-  );
-}
+//   return (
+//     // your component JSX
+//     <div></div>
+//   );
+// }
 
 export function SessionConfigModel(props: { onClose: () => void }) {
   const chatStore = useChatStore();

@@ -190,7 +190,7 @@ export function MaskConfig(props: {
       </List> */}
 
       <List>
-        <ListItem
+        {/* <ListItem
           title={Locale.Mask.Config.Sync.Title}
           subTitle={Locale.Mask.Config.Sync.SubTitle}
         >
@@ -215,7 +215,7 @@ export function MaskConfig(props: {
               }
             }}
           ></input>
-        </ListItem>
+        </ListItem> */}
         <ListItem
           title={Locale.Settings.Endpoint.Title}
           subTitle={Locale.Settings.Endpoint.SubTitle}

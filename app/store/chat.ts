@@ -261,7 +261,7 @@ export const useChatStore = create<ChatStore>()(
       currentSession() {
         let index = get().currentSessionIndex;
         const sessions = get().sessions;
-        // console.log("currentSession", index, sessions);
+        console.log("currentSession", index, sessions);
         
         
 
