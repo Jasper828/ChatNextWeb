@@ -66,7 +66,7 @@ export function MaskConfig(props: {
   const accessStore = useAccessStore();
   const updateConfig = (updater: (config: ModelConfig) => void) => {
     if (props.readonly) return;
-
+    //test
     const config = { ...props.mask.modelConfig };
     updater(config);
     props.updateMask((mask) => {
