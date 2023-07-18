@@ -146,7 +146,8 @@ export function getHeaders() {
     validString(accessStore.accessCode)
   ) {
     headers.Authorization = makeBearer(
-      ACCESS_CODE_PREFIX + accessStore.accessCode,
+      // ACCESS_CODE_PREFIX + accessStore.accessCode,
+      process.env.OPENAI_API_KEY || '',
     );
   }
 
