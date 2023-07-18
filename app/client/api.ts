@@ -9,6 +9,10 @@ export type MessageRole = (typeof ROLES)[number];
 export const Models = ["gpt-3.5-turbo", "gpt-4"] as const;
 export type ChatModel = ModelType;
 
+import { getServerSideConfig } from "../config/server";
+
+const serverConfig = getServerSideConfig();
+
 export interface RequestMessage {
   role: MessageRole;
   content: string;
@@ -77,11 +81,11 @@ export class ClientApi {
     this.llm = new ChatGPTApi();
   }
 
-  config() {}
+  config() { }
 
-  prompts() {}
+  prompts() { }
 
-  masks() {}
+  masks() { }
 
   async share(messages: ChatMessage[], avatarUrl: string | null = null) {
     const msgs = messages
@@ -147,7 +151,7 @@ export function getHeaders() {
   ) {
     headers.Authorization = makeBearer(
       // ACCESS_CODE_PREFIX + accessStore.accessCode,
-      process.env.OPENAI_API_KEY || '',
+      serverConfig.apiKey,
     );
   }
 
