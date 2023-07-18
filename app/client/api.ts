@@ -9,7 +9,7 @@ export type MessageRole = (typeof ROLES)[number];
 export const Models = ["gpt-3.5-turbo", "gpt-4"] as const;
 export type ChatModel = ModelType;
 
-import { getServerSideConfig } from "../config/server";
+import { getServerSideConfig } from "@/app/config";
 
 const serverConfig = getServerSideConfig();
 
@@ -149,9 +149,13 @@ export function getHeaders() {
     accessStore.enabledAccessControl() &&
     validString(accessStore.accessCode)
   ) {
+    //搞不明白为啥这里获取不到环境变量里面的值G
+    // console.log('[apiKey]',serverConfig.apiKey);
     headers.Authorization = makeBearer(
       // ACCESS_CODE_PREFIX + accessStore.accessCode,
-      serverConfig.apiKey,
+      // serverConfig.apiKey,
+      //提供你默认的key
+      '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'
     );
   }
 
