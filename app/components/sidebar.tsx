@@ -151,9 +151,15 @@ export function SideBar(props: { className?: string }) {
             navigate(Path.Home);
           }
           const temp = chatStore.currentSession();
+        if(temp.api_key !== ""){
           // console.log("点击了", temp.mask.api_url);
           accessStore.updateOpenAiUrl(temp.mask.api_url);
           accessStore.updateToken(temp.mask.api_key);
+        }
+        else{
+          accessStore.updateOpenAiUrl("");
+          accessStore.updateToken("");  
+        }
         }}
       >
         <ChatList narrow={shouldNarrow} />
