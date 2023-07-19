@@ -145,17 +145,26 @@ export function getHeaders() {
   // 增加判断条件 currentSession的key要不是默认的
   if (validString(accessStore.token) && (isDefault !== "")) {
     headers.Authorization = makeBearer(accessStore.token);
+    console.log('[headers.Authorization](api.ts)', headers.Authorization);
   } else if (
     accessStore.enabledAccessControl() &&
     validString(accessStore.accessCode)
   ) {
     //搞不明白为啥这里获取不到环境变量里面的值G
     // console.log('[apiKey]',serverConfig.apiKey);
+    console.log('[apiKey]',process.env.OPENAI_API_KEY);
+    if (typeof window !== 'undefined') {
+      // 在浏览器中运行，可以直接访问 process.env 对象
+      console.log('[apiKey在浏览器中运行，可以直接访问 process.env 对象]', process.env.OPENAI_API_KEY);
+    } else {
+      // 不在浏览器中运行，可以使用服务器端环境变量
+      console.log('[apiKey 不在浏览器中运行，可以使用服务器端环境变量]', process.env.OPENAI_API_KEY_SERVER);
+    }
     headers.Authorization = makeBearer(
-      // ACCESS_CODE_PREFIX + accessStore.accessCode,
+      ACCESS_CODE_PREFIX + accessStore.accessCode,
       // serverConfig.apiKey,
       //提供你默认的key
-      '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'
+      // 'SKK'
     );
   }
 

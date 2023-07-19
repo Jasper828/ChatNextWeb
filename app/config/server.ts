@@ -40,7 +40,7 @@ export const getServerSideConfig = () => {
   // 从这里开始
   const apiKeys = (process.env.OPENAI_API_KEY ?? "").split(",");
   const apiKey = apiKeys.at(Math.floor(Math.random() * apiKeys.length)) ?? "";
-  console.log('[apiKey]', apiKey);
+  console.log('[apiKey(sever.ts)]', apiKey);
   return {
     apiKey,
     code: process.env.CODE,
